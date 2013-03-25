@@ -1,0 +1,33 @@
+<% @posts.each do |post| %>
+
+<div class="row">
+  <div class="span8"><h2><%= link_to post.title, post_path(post) %></h2></div>
+</div>
+<div class="row">
+  <span class="span8">
+    <small>posted by <em><%= post.user.name %></em> on <em><%=l post.publish_date, :format => :long %></em></small>
+  </span>
+</div>
+<br />
+<blockquote><%= post.body.length > 250 ? post.body[0...250].strip + "..." : post.body %></blockquote>
+
+<% if current_user && (current_user.has_role?(:admin) || current_user.id == post.user_id) %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => "btn btn-mini" %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")), 
+    post_path(post), 
+    :method => :delete, 
+    :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => "helpers.links.destroy")), 
+    :class => "btn btn-mini btn-danger" %>
+<% end %>
+  <hr />
+<% end %>
+
+
+
+<%= will_paginate %>
+
+<% if current_user %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_post_path,
+            :class => 'btn btn-primary' %>
+<% end %>

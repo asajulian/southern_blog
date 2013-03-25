@@ -1,0 +1,31 @@
+<%- model_class = Post -%>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<div class="page-header">
+  <h1><%=t '.title', :default => @post.title %></h1>
+</div>
+
+<blockquote><%= @post.body %></blockquote>
+
+<div class="row">
+  <span class="span8">
+    <small>posted by <em><%= @post.user.name %></em> on <em><%=l @post.publish_date, :format => :long %></em></small>
+  </span>
+</div>
+
+<%= like_button(ENV["FACEBOOK_APP_ID"]) %>
+<%= tweet_button %>
+<%= pinit_button %>
+
+<%= google_plus_button %>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              posts_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_post_path(@post), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              post_path(@post),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

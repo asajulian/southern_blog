@@ -1,3 +1,10 @@
-@import "bootstrap";
 body { padding-top: 60px; }
-@import "bootstrap-responsive";
+
+// First import Bootswatch theme variables http://bit.ly/KIu8IN
+@import 'bootswatch/readable/variables';
+
+// Use Twitter Bootstrap
+@import 'bootstrap';
+
+// And finally Bootswatch style
+@import "bootswatch/readable/bootswatch"
