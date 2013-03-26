@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, :except => :index
+  # allow unauthenticated users to access the list of posts as well as showing an individual post
+  before_filter :authenticate_user!, :except => [ :index, :show ]
 
   # GET /posts
   # GET /posts.json
