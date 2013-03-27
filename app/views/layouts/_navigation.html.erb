@@ -18,6 +18,9 @@
       <%= link_to 'Users', users_path %>
       </li>
     <% end %>
+    <li>
+      <%= link_to 'Write New Post', new_post_path %>
+    </li>
   <% else %>
     <li>
     <%= link_to 'Sign up', new_user_registration_path %>
